@@ -15,7 +15,7 @@ cv2.createTrackbar("bSize", "TrackBars", 77, 255, empty)
 def preprocessing(frame, value_BSize, cVal):
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     mask = cv2.inRange(hsv, lower, upper)
-    imgBlurred = cv2.GaussianBlur(mask, kernel, 4)
+    imgBlurred = cv2.GaussianBlur(mask, kernel, 0)
     gaussC = cv2.adaptiveThreshold(imgBlurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, value_BSize,                             cVal)
     imgDial = cv2.dilate(gaussC, kernel, iterations=3)
     imgErode = cv2.erode(imgDial, kernel, iterations=1)
